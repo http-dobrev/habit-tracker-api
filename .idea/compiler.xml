@@ -2,6 +2,9 @@
 <project version="4">
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="com.konstantin.habittracker" options="-parameters" />
+      <module name="com.konstantin.habittracker.main" options="-parameters" />
+      <module name="com.konstantin.habittracker.test" options="-parameters" />
       <module name="habittracker" options="-parameters" />
       <module name="habittracker.main" options="-parameters" />
       <module name="habittracker.test" options="-parameters" />
