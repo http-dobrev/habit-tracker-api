@@ -9,4 +9,8 @@ public class TestController {
     public String home() {
         return "Backend is running";
     }
+    @GetMapping("/health")
+    public String health() {
+        return "OK";
+    }
 }
