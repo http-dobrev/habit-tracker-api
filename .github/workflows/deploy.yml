@@ -25,4 +25,7 @@ jobs:
             chmod +x gradlew
             ./gradlew build
             sudo systemctl restart habittracker
+            sleep 5
+            sudo systemctl status habittracker --no-pager
+            sudo journalctl -u habittracker -n 50 --no-pager
             curl http://localhost:8080/
