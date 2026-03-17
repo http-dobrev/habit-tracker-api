@@ -10,7 +10,11 @@ jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
+    
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        
       - name: Deploy to VM via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
