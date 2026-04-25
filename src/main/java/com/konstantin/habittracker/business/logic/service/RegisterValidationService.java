@@ -1,4 +1,4 @@
-package com.konstantin.habittracker.business.logic.impl;
+package com.konstantin.habittracker.business.logic.service;
 
 import com.konstantin.habittracker.domain.User;
 import org.springframework.stereotype.Service;
