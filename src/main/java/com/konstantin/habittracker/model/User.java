@@ -39,23 +39,38 @@ public class User {
     }
 
     @PrePersist
-    protected void onCreate() {
+    public void onCreate() {
         createdAt = LocalDateTime.now();
         updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate
-    protected void onUpdate() {
+    public void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
 
-    public Long getId() {
-        return id;
-    }
+    //getters
+    public Long getId() { return id; }
+    public String getName() { return name; }
     public String getEmail() {
         return email;
     }
     public Role getRole() { return role; }
+    public String getPassword() { return password; }
     public LocalDateTime getCreatedAt() { return createdAt; }
     public LocalDateTime getUpdatedAt() { return updatedAt; }
+
+    //setters
+    public void updateName(String name) {
+        this.name = name;
+    }
+
+    public void changePassword(String hashedPassword) {
+        this.password = hashedPassword;
+    }
+
+    // controlled role change
+    public void changeRole(Role role) {
+        this.role = role;
+    }
 }
