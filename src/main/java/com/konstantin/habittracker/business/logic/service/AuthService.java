@@ -9,6 +9,7 @@ import com.konstantin.habittracker.exception.InvalidRequestException;
 import com.konstantin.habittracker.model.Role;
 import com.konstantin.habittracker.model.User;
 import com.konstantin.habittracker.persistence.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -17,19 +18,22 @@ public class AuthService {
 
     private final JwtService jwtService;
     private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder;
 
-    public AuthService(JwtService jwtService, UserRepository userRepository) {
+    public AuthService(JwtService jwtService, UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.jwtService = jwtService;
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public AuthResponse register(RegisterRequest request) {
-        if (userRepository.existsByEmail(request.getEmail())) {
+
+        String email = request.getEmail().trim().toLowerCase();
+
+        if (userRepository.existsByEmail(email)) {
             throw new EmailAlreadyExistsException("Email already exists");
         }
 
-        String email = request.getEmail().trim().toLowerCase();
         String hashedPassword = passwordEncoder.encode(request.getPassword());
 
         User user = new User(
