@@ -19,7 +19,7 @@ public class HabitCompletionController {
         this.habitCompletionService = habitCompletionService;
     }
 
-    @GetMapping("/completions")
+    @GetMapping("")
     public ResponseEntity<List<HabitCompletionResponse>> getAllHabitCompletions() {
         return ResponseEntity.ok(habitCompletionService.getAllHabitCompletions());
     }
